@@ -1,3 +1,5 @@
+import Data.List
+
 cmp :: (Num a, Ord a) => a -> Ordering  
 cmp a
     | a > 1    = GT  
@@ -40,5 +42,10 @@ fib x = fib' 0 1 0 x where
         | (cnt >= end) = b
         | otherwise = fib' b (a + b) (cnt + 1) x
 
-foo :: (Real a) => a -> a -> a
-foo a b = if a > b then a else b
+
+search' :: (Eq a) => [a] -> [a] -> Bool
+search' needle haystack =
+    let
+        isPostfix True _ = True
+        isPostfix False x = needle `isPrefixOf` x
+    in foldl' isPostfix False (tails haystack)
