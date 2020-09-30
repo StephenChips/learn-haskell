@@ -90,6 +90,15 @@ main = do
 
     -- `nub` is the `uniq` function in other language, it has a bad name.
     _ <- print $ nub $ concatMap (replicate 2) [1..3]
+
+    -- function length, take, drop, split, !! all has the generic version,
+    -- that is able to take more generic argument.
+
+    -- The `take` version accept `Int` for the 1st argument.
+    _ <- print $ take 10 [1..]
+    -- While `genericTake` version accept Typeclass `Integral`.
+    _ <- print $ genericTake (10 :: Integer) [1..]
+    
     print "DONE"
 
 -- Just a dummy version of "QuickSort", which should be called as "Slow Sort"!
